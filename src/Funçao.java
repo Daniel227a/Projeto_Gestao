@@ -4,8 +4,10 @@ import java.util.Scanner;
 public class Funçao
 {
     Scanner teclado = new Scanner(System.in);
-    ArrayList<Funcionario> x = new ArrayList<>();
-    Funcionario y = new Funcionario();
+    ArrayList<Funcionario> x = new ArrayList<>();//armazena funcionarios
+    Funcionario y = new Funcionario();//temporario de funcionarios
+    ArrayList<Pedidos> Demanda_Produtos =new ArrayList<>();//contem todos os pedidos de produtos
+    Pedidos temped =new Pedidos();//armazena temporariamente  todos os pedidios
     int funcionarios;//numero de funcionarios
     float salario;
     int idade;
@@ -136,7 +138,13 @@ public class Funçao
         }
         System.out.println("a quantidade de Homens com 60 ou mais e  salario mair de 1000 e "+cont);
     }
+    public void pedido()
+    {
 
+
+
+
+    }
     public void menu()
     {
 

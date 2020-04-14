@@ -16,6 +16,13 @@ public class Funçao
     int numerodelog;//numero unico ppara cadda funcionario
     int numeromenu=0;//variavel global
 
+    //para classe produto
+
+    int numero_produto;//variavel temporaria
+    float valor_produto;//variavel temporaria
+    String nome_produto;//variavel temporaria
+    int quantidade_produto;//variavel temporaria
+
     public void Prenche() {
         System.out.println("digite quantos fuuncionarios sao");
         funcionarios = teclado.nextInt();
@@ -140,9 +147,30 @@ public class Funçao
     }
     public void pedido()
     {
+        System.out.println("digite quantos pedidos diferentes sao ");
+        int tamanho_pedidio=teclado.nextInt();
+        for(int i=0;i<tamanho_pedidio;i++)
+        {
+            System.out.println("digte numero do produto");
+            numero_produto=teclado.nextInt();
+            temped.setNumero_produto(numero_produto);
+
+            System.out.println("digite a quantidede de produto");
+            quantidade_produto=teclado.nextInt();
+            temped.setQuantidade_produto(quantidade_produto);
+
+            System.out.println("digite o nome do produto");
+            nome_produto=teclado.nextLine();
+            teclado.nextLine();
+            temped.setNome_produto(nome_produto);
+
+            System.out.println("digite o valor do produto");
+            valor_produto=teclado.nextFloat();
+            temped.setValor_produto(valor_produto);
+          Demanda_Produtos.add(temped);
 
 
-
+        }
 
     }
     public void menu()
@@ -171,7 +199,7 @@ public class Funçao
 
                     break;
                 case 3:
-
+                    pedido();
                     break;
                 case 4:
 

@@ -4,10 +4,17 @@ import java.util.Scanner;
 public class Funçao
 {
     Scanner teclado = new Scanner(System.in);
+
     ArrayList<Funcionario> x = new ArrayList<>();//armazena funcionarios
     Funcionario y = new Funcionario();//temporario de funcionarios
+
     ArrayList<Pedidos> Demanda_Produtos =new ArrayList<>();//contem todos os pedidos de produtos
     Pedidos temped =new Pedidos();//armazena temporariamente  todos os pedidios
+
+    ArrayList<Cliente>vetor_cliente=new ArrayList<>();//vetor de clientes
+    Cliente temp_cliente=new Cliente();//temporaria de clientes
+
+
     int funcionarios;//numero de funcionarios
     float salario;
     int idade;
@@ -22,6 +29,15 @@ public class Funçao
     float valor_produto;//variavel temporaria
     String nome_produto;//variavel temporaria
     int quantidade_produto;//variavel temporaria
+    //para classe cliente
+
+    String nome_cliente;
+     int cnpj;
+     float divida;//valor da divida
+     int numerode_parceas_divida;
+     int inicio_do_pagamento;//numero do mes que se inicia as parcelas
+     int fim_pagamento;//numero do mes que se finaliza parcelas
+     float credito;
 
     public void Prenche() {
         System.out.println("digite quantos fuuncionarios sao");
@@ -171,6 +187,37 @@ public class Funçao
 
 
         }
+
+    }
+    public void dividas_cliente()
+    {
+        System.out.println("digite a divida do cliente");
+        divida=teclado.nextFloat();
+        if(divida==0)
+        {
+
+        }else{
+            System.out.println("digite o numero de parselas");
+        }
+
+    }
+    public void cadrastro_cliente()
+    {
+        System.out.println("digite o nome do cliente");
+        nome_cliente=teclado.nextLine();
+        temp_cliente.setNome(nome_cliente);
+
+        System.out.println("digite o cnpj");
+        cnpj=teclado.nextInt();
+        temp_cliente.setCnpj(cnpj);
+
+
+
+
+    }
+    public int numeroaleatorio_cliente()
+    {
+
 
     }
     public void menu()

@@ -5,10 +5,62 @@ public class Cliente
     private float divida;//valor da divida
     private int numerode_parceas_divida;
     private int inicio_do_pagamento;//numero do mes que se inicia as parcelas
-    private int fin_pagamento;//numero do mes que se finaliza parcelas
-    public float credito;
+    private int fim_pagamento;//numero do mes que se finaliza parcelas
+    private float credito;
 
+    public String getNome() {
+        return nome;
+    }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
+    public int getCnpj() {
+        return cnpj;
+    }
 
+    public void setCnpj(int cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public float getDivida() {
+        return divida;
+    }
+
+    public void setDivida(float divida) {
+        this.divida = divida;
+    }
+
+    public int getNumerode_parceas_divida() {
+        return numerode_parceas_divida;
+    }
+
+    public void setNumerode_parceas_divida(int numerode_parceas_divida) {
+        this.numerode_parceas_divida = numerode_parceas_divida;
+    }
+
+    public int getInicio_do_pagamento() {
+        return inicio_do_pagamento;
+    }
+
+    public void setInicio_do_pagamento(int inicio_do_pagamento) {
+        this.inicio_do_pagamento = inicio_do_pagamento;
+    }
+
+    public int getFim_pagamento() {
+        return fim_pagamento;
+    }
+
+    public void setFim_pagamento(int fim_pagamento) {
+        this.fim_pagamento = fim_pagamento;
+    }
+
+    public float getCredito() {
+        return credito;
+    }
+
+    public void setCredito(float credito) {
+        this.credito = credito;
+    }
 }

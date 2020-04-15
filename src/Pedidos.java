@@ -4,6 +4,16 @@ public class Pedidos
     private float valor_produto;
     private String nome_produto;
     private int quantidade_produto;
+    private String area_destina;
+    private int numero_cliente;
+    public int getNumero_cliente() {
+        return numero_cliente;
+    }
+
+    public void setNumero_cliente(int numero_cliente) {
+        this.numero_cliente = numero_cliente;
+    }
+
 
     public String getArea_destina() {
         return area_destina;
@@ -13,7 +23,7 @@ public class Pedidos
         this.area_destina = area_destina;
     }
 
-    private String area_destina;
+
 
 
     public void setNumero_produto(int numero_produto) {

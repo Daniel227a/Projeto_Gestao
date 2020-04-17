@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Calendar;
 public class Funçao
 {
     Scanner teclado = new Scanner(System.in);
@@ -13,6 +14,7 @@ public class Funçao
 
     ArrayList<Cliente>vetor_cliente=new ArrayList<>();//vetor de clientes
     Cliente temp_cliente=new Cliente();//temporaria de clientes
+    int mes;//inicio da parcela
 
 
     int funcionarios;//numero de funcionarios
@@ -33,10 +35,11 @@ public class Funçao
 
     String nome_cliente;
      int cnpj;
-     float divida;//valor da divida
-     int numerode_parceas_divida;
-     int inicio_do_pagamento;//numero do mes que se inicia as parcelas
-     int fim_pagamento;//numero do mes que se finaliza parcelas
+     float divida=0;//valor da divida
+     int numerode_parceas_divida=0;
+     int inicio_do_pagamento=0;//numero do mes que se inicia as parcelas
+     int fim_pagamento=0;//numero do mes que se finaliza parcelas
+    int numero_cliente;
      float credito;
 
     public void Prenche() {
@@ -146,7 +149,6 @@ public class Funçao
         System.out.println("a menor idade do grupoo das mulheres e "+menor_M);
         System.out.println("a menor idade do grupo dos Homes e "+menor_H);
     }
-
     public void Maior60()
     {
         int cont=0;
@@ -156,7 +158,6 @@ public class Funçao
             if(this.y.getIdade()>60&&this.y.getSalario()>1000)
             {
                 cont++;
-
             }
         }
         System.out.println("a quantidade de Homens com 60 ou mais e  salario mair de 1000 e "+cont);
@@ -183,8 +184,10 @@ public class Funçao
             System.out.println("digite o valor do produto");
             valor_produto=teclado.nextFloat();
             temped.setValor_produto(valor_produto);
-          Demanda_Produtos.add(temped);
-
+            Demanda_Produtos.add(temped);
+            System.out.println("digite o numero do cliete");
+            numero_cliente=teclado.nextInt();
+            confere_existecia_clienete(numero_cliente);
 
         }
 
@@ -195,14 +198,30 @@ public class Funçao
         divida=teclado.nextFloat();
         if(divida==0)
         {
+            System.out.println("pagamento avista comcluido");
+        }else
+            {
+                System.out.println("digite o valor da deivida");
+                divida=teclado.nextInt();
+                System.out.println("digite o numero de parselas");
+                numerode_parceas_divida=teclado.nextInt();
+                System.out.println("digite o numero do mes de inicio de pagamento");
+                inicio_do_pagamento=teclado.nextInt();
+                Calendar hoje=Calendar.getInstance(); // iniciando calendario
+                mes=hoje.get(Calendar.MONTH)+1;//mes começa pelo 0
+                    inicio_do_pagamento=mes;
+                        fim_pagamento=inicio_do_pagamento+numerode_parceas_divida;
+                if(fim_pagamento>12)
+                {
+                    fim_pagamento=fim_pagamento-12;
 
-        }else{
-            System.out.println("digite o numero de parselas");
+                }
         }
-
     }
     public void cadrastro_cliente()
     {
+        teclado.nextLine();
+        int numero_cliente;//recenbe funçaao random
         System.out.println("digite o nome do cliente");
         nome_cliente=teclado.nextLine();
         temp_cliente.setNome(nome_cliente);
@@ -210,15 +229,88 @@ public class Funçao
         System.out.println("digite o cnpj");
         cnpj=teclado.nextInt();
         temp_cliente.setCnpj(cnpj);
+        numero_cliente=numeroaleatorio_cliente();
+        System.out.println("o numero do cliente e "+numero_cliente);
+        temp_cliente.setNumero_aeleatorio(numero_cliente);
 
+        //variaveis modifcadas na funçao divida cliente
+        temp_cliente.setFim_pagamento(fim_pagamento);
+        temp_cliente.setDivida(divida);
+        temp_cliente.setNumerode_parceas_divida(numerode_parceas_divida);
+        vetor_cliente.add(temp_cliente);
 
 
 
     }
     public int numeroaleatorio_cliente()
     {
+        Random ale=new Random();
+        int numeroale;
+        int compara = 0;
+        do {
+            numeroale =ale.nextInt(100);
+
+            for (int i = 0; i < this.vetor_cliente.size(); i++)
+            {
+                this.temp_cliente = (Cliente) this.vetor_cliente.get(i);
+                if (this.temp_cliente.getNumero_aeleatorio() == numeroale)
+                {
+                    compara = 1;
+
+                }
+            }
+
+        }while (compara==1);
+
+        return numeroale;
+
+    }
+    public void confere_existecia_clienete(int numero_cliente)
+    {
+        int existe_clienete=0;
+
+        for(int i=0;i<this.vetor_cliente.size();i++)
+        {
+            this.temp_cliente=(Cliente)this.vetor_cliente.get(i);
+            if(this.temp_cliente.getNumero_aeleatorio()==numero_cliente)
+            {
+
+                existe_clienete=1;
+
+            }
 
 
+        }
+        if(existe_clienete==1)
+        {//o cliente existe
+            dividas_cliente();
+
+        }else
+            {//o cliente nao existe
+                System.out.println("cliente inexistente");
+                System.out.println("cadrestre o cliente");
+                cadrastro_cliente();
+
+            }
+
+
+    }
+    public void mostra_divida(int numero)
+    {
+        for(int i=0;i<vetor_cliente.size();i++)
+        {
+            temp_cliente=(Cliente)this.vetor_cliente.get(i);
+            if(temp_cliente.getNumero_aeleatorio()==numero)
+            {
+                System.out.println("divida "+temp_cliente.getDivida());
+                System.out.println(" parcelas "+temp_cliente.getNumerode_parceas_divida());
+                System.out.println("inicio do pagamento "+temp_cliente.getInicio_do_pagamento());
+                System.out.println(" fim do pagamento "+temp_cliente.getFim_pagamento());
+
+
+            }
+
+        }
     }
     public void menu()
     {
@@ -231,8 +323,9 @@ public class Funçao
             System.out.println("digite 2----Demiçao");
             System.out.println("digite 3----Pedido");
             System.out.println("digite 4----cadrastro de cliente");
-            System.out.println("digite 5----estooque");
-            System.out.println("digite 6----Sair");
+            System.out.println("digite 5----mostrar a divida");
+            System.out.println("digite 6----estooque");
+            System.out.println("digite 7----Sair");
 
             numeromenu= teclado.nextInt();
 
@@ -253,6 +346,8 @@ public class Funçao
                     break;
                 case 5:
 
+                    System.out.println("digite o numero do cliente");
+                    mostra_divida(teclado.nextInt());
                     break;
                 case 6:
 
@@ -260,7 +355,7 @@ public class Funçao
 
             }
 
-        }while(numeromenu!=6);
+        }while(numeromenu!=7);
 
     }
 

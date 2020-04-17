@@ -4,12 +4,5 @@ public class Man
     {
         Funçao t=new Funçao();
         t.menu();
-
-
-
     }
-
-
-
-
 }

@@ -7,6 +7,17 @@ public class Cliente
     private int inicio_do_pagamento;//numero do mes que se inicia as parcelas
     private int fim_pagamento;//numero do mes que se finaliza parcelas
     private float credito;
+    private int numero_aeleatorio;//numero do cliente
+
+    public int getNumero_aeleatorio() {
+        return numero_aeleatorio;
+    }
+
+    public void setNumero_aeleatorio(int numero_aeleatorio) {
+        this.numero_aeleatorio = numero_aeleatorio;
+    }
+
+
 
     public String getNome() {
         return nome;
